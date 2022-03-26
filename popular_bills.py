@@ -15,6 +15,7 @@ links = []
 def get_summary(congress, sorhstring, number):
     url = "https://www.congress.gov/bill/"+str(congress)+"th-congress/"+sorhstring+"-bill/"+str(number)
     req = requests.get(url)
+    open('cache/' + url, 'w+').write(req.text)
     sums = BeautifulSoup(req.text, 'lxml')
     summ = sums.find("div", {"id": "bill-summary"})
     text = sums.select("div#bill-summary p")
@@ -63,7 +64,24 @@ for id in popular_ids:
     if id + '.json' in available_ids:
         f = open('data/' + id + '.json')
         j = json.load(f)
+        sorh = None
+        if id[0] == 's':
+            sorh = 'senate'
+        if id[0] == 'h':
+            sorh = 'house'
+        i = 0
+        while id[i] not in '0123456789':
+            i += 1
+        number = int(id[i:])
         j['bill_summary'] = get_summary(117, sorh, number)
+        all_votes = []
+        for nay in j['votes']['Nay']:
+            nay['vote'] = 'nay'
+            all_votes.append(nay)
+        for yea in j['votes']['Yea']:
+            yea['vote'] = 'yea'
+            all_votes.append(yea)
+        j['votes'] = all_votes
         # print(id, id_title_dict[id])
         if 'subject' in j:
             print(id, id_title_dict[id], '|', j['subject'])
