@@ -13,7 +13,7 @@ function App() {
           borderRadius: 1,
         }}
       >
-        <img src={logo} className="App-logo" alt="logo" />
+
       </Box>
   );
 }
