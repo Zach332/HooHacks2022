@@ -60,7 +60,7 @@ async def get_bill_by_id(lid):
                     c = True
                     break
     toreturn = random.sample(bills, 10)
-    return str(toreturn)
+    return toreturn
 
 @app.get("/get-answer")
 async def get_answer_by_id(lid, congress: int, number: int, type):
