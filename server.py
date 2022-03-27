@@ -32,3 +32,36 @@ async def get_legislators(state: str):
             if x["state"] == state:
                 legislators[x["id"]] = x["display_name"]
     return str(legislators)
+
+@app.get("/get-bill")
+async def get_bill_by_id(lid):
+    bills = []
+    with open('popular_bills.json') as f:
+        j = json.load(f)
+        for b in j:
+            c = False
+            for x in b["votes"]["Yea"]:
+                if x["id"] == lid:
+                    bills.append(b["bill"])
+                    c = True
+                    break
+            if c: continue
+            for x in b["votes"]["Nay"]:
+                if x["id"] == lid:
+                    bills.append(b["bill"])
+                    break
+    return str(bills)
+
+@app.get("/get-answer")
+async def get_answer_by_id(lid, congress: int, number: int, type):
+    with open('popular_bills.json') as f:
+        j = json.load(f)
+        for b in j:
+            if b["bill"]["number"] == number and b["bill"]["congress"] == congress and b["bill"]["type"] == type:
+                for x in b["votes"]["Yea"]:
+                    if x["id"] == lid:
+                        return "Yea"
+                for x in b["votes"]["Nay"]:
+                    if x["id"] == lid:
+                        return "Nay"
+    return "error"
