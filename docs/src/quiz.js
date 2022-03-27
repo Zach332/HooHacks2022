@@ -11,8 +11,8 @@ export class QuizPage extends React.Component {
         super(props)
         this.state = {
             legislator: {
-                id: 'B001292',
-                name: 'Beyer'
+                id: window.location.hash.split("?")[1],
+                name: 'Loading name...'
             },
             bills: [],
             index: -1,
@@ -23,6 +23,7 @@ export class QuizPage extends React.Component {
             qtype: 0
         }
         this.onKeyPress = this.onKeyPress.bind(this);
+        window.fetch("http://127.0.0.1:8000/legislator?lid="+window.location.hash.split("?")[1]).then(res => res.text()).then(data => {this.state.legislator.name = data.slice(1, -1);})
     }
 
     onKeyPress(event){

@@ -6,48 +6,49 @@ import List from '@mui/material/List'
 import './App.css';
 import { useEffect, useState } from 'react';
 import { ListItemButton, ListItemText, Divider } from '@mui/material';
-// window.fetch("http://127.0.0.1:8000/legislators?state="+event.target.value).then(res => res.json()).then(data => setStatus(data))
-function App() {
+import {NavLink, Link, useNavigate} from "react-router-dom";
 
+function App() {
+    const history = useNavigate();
     const [status, setStatus] = useState([]);
-  return (
-    <Box>
-        <Box
+    return (
+        <Box>
+            <Box
+                sx={{
+                display: 'flex',
+                justifyContent: 'space-evenly',
+                }}
+            >
+                <img src={logo} className="large-logo" alt="logo" />
+            </Box>
+            <Box
+                sx={{
+                display: 'flex',
+                justifyContent: 'space-evenly',
+                }}
+            >
+                <Autocomplete
+                    disablePortal
+                    options={states}
+                    sx={{ width: 300 }}
+                    renderInput={(params) => <TextField id="input" {...params} label="State" /> }
+                    onChange={(event, value) => window.fetch("http://127.0.0.1:8000/legislators?state="+abbr[states.indexOf(value)]).then(res => res.json()).then(data => setStatus(data))}
+                    />
+            </Box>
+            <Box
             sx={{
-            display: 'flex',
-            justifyContent: 'space-evenly',
-            }}
-        >
-            <img src={logo} className="large-logo" alt="logo" />
-        </Box>
-        <Box
-            sx={{
-            display: 'flex',
-            justifyContent: 'space-evenly',
-            }}
-        >
-            <Autocomplete
-                disablePortal
-                options={states}
-                sx={{ width: 300 }}
-                renderInput={(params) => <TextField id="input" {...params} label="State" /> }
-                onChange={(event, value) => window.fetch("http://127.0.0.1:8000/legislators?state="+abbr[states.indexOf(value)]).then(res => res.json()).then(data => setStatus(data))}
-                 />
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-evenly',
-            textAlign: 'center',
-            paddingTop: 5,
-            }}
-        > 
-        <Box sx={{ bgcolor: '#d9d910', padding: 3}}><ListItemText>House of Representatives</ListItemText><Divider color="black" /><List>{status.map(x => <ListItemButton><ListItemText>{x.name}, {(x.party == "R")?("Republican"):("Democrat")}</ListItemText></ListItemButton>)}</List></Box>
-        {/* <div class="box2">Senate</div> */}
-        
-        </Box>
-  </Box>
-  );
+                display: 'flex',
+                justifyContent: 'space-evenly',
+                textAlign: 'center',
+                paddingTop: 5,
+                }}
+            > 
+            <Box sx={{ bgcolor: '#d9d910', padding: 3}}><ListItemText>House of Representatives</ListItemText><Divider color="black" /><List>{status.map(x => <ListItemButton onClick={() => history('/quiz?' + x.id)}><ListItemText>{x.name}, {(x.party == "R")?("Republican"):("Democrat")}</ListItemText></ListItemButton>)}</List></Box>
+            {/* <div class="box2">Senate</div> */}
+            
+            </Box>
+    </Box>
+    );
 }
 
 const abbr = [
