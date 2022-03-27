@@ -3,6 +3,7 @@ import json
 import sys
 import requests
 from bs4 import BeautifulSoup
+from summary import get_summary
 
 # req = requests.get("https://www.congress.gov/most-viewed-bills")
 
@@ -44,9 +45,13 @@ for row in rows:
 available_ids = os.listdir('data')
 
 popular_bills = []
+done_ids = set()
 
 for id in popular_ids:
     if id + '.json' in available_ids:
+        if id in done_ids:
+            continue
+        done_ids.add(id)
         f = open('data/' + id + '.json')
         j = json.load(f)
         sorh = None
