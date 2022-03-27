@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import HomeIcon from '@mui/icons-material/Home';
-import logo from './minilogo.png';
 import { useEffect, useState } from 'react';
 import wordmark from './wordmark.png'
 import './navbar.css';
