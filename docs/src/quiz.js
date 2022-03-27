@@ -25,7 +25,8 @@ export class QuizPage extends React.Component {
                 type: ""
             },
             qtype: 0,
-            answer: ""
+            answer: "",
+            response: ""
         }
         this.onKeyPress = this.onKeyPress.bind(this);
         window.fetch("http://127.0.0.1:8000/legislator?lid="+window.location.hash.split("?")[1]).then(res => res.text()).then(data => {this.state.legislator.name = data.slice(1, -1);})
@@ -79,16 +80,16 @@ export class QuizPage extends React.Component {
                 height: '500px'
                 }}
             >
-                <Typography variant="h1" component="div" onClick={_ => this.respond('nay')} sx={{
-                    }}>
+                <Typography variant="h1" component="div" onClick={_ => this.respond('nay')}
+                    style={{color: this.state.response === "nay" ? "#d9d910" : ""}}>
                         Nay
                 </Typography>
                 <Divider orientation="vertical" flexItem> 
                 <ArrowBackIosIcon sx={{mr: 5}}/>
                 <ArrowForwardIosIcon />
                 </Divider>
-                <Typography variant="h1" component="div" onClick={_ => this.respond('yea')} sx={{
-                    }}>
+                <Typography variant="h1" component="div" onClick={_ => this.respond('yea')} 
+                    style={{color: this.state.response === "yea" ? "#27d9d9" : ""}}>
                         Yea
                 </Typography>
                 {this.state.answer === "correct" && <motion.div
@@ -149,6 +150,7 @@ export class QuizPage extends React.Component {
 
     respond(answer) {
         if(this.state.answer === "") {
+            this.setState({response: answer})
             fetch(`http://localhost:8000/get-answer?lid=${this.state.legislator.id}&congress=${this.state.bill.bill.congress}&number=${this.state.bill.bill.number}&type=${this.state.bill.bill.type}`)
                 .then(res => res.json())
                 .then(json => {
@@ -161,7 +163,7 @@ export class QuizPage extends React.Component {
                     }
                 })
             setTimeout(() => {
-                this.setState({answer: ""});
+                this.setState({answer: "", response: ""});
                 const index = this.state.index + 1
                 if (index >= this.state.bills.length) {
                     console.log('All done')
