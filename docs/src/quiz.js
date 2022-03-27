@@ -97,14 +97,12 @@ export class QuizPage extends React.Component {
                         rotate: [0, 20, 0, -20, 0],
                     }}
                     transition={{ ease: "linear", duration: 1.5, repeat: Infinity }}
-                    style={{position: "fixed"}}
+                    style={{position: "fixed", bottom: "150px"}}
                 >
                     <Typography variant="h3" component="div"  sx={{
-                        mb: 10,
                         display: 'flex',
                         justifyContent: 'space-evenly',
                         color: "green",
-                        x: "110%"
                         }}>
                         Correct!
                   </Typography>
