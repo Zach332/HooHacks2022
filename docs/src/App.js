@@ -37,7 +37,7 @@ function App() {
             }}
         > 
         <div class="box1">House of Representatives</div>
-        <div class="box2">Senate</div>
+        {/* <div class="box2">Senate</div> */}
         </Box>
   </Box>
   );
