@@ -103,39 +103,43 @@ export class QuizPage extends React.Component {
                     </Typography>
                 </div>
                 </Stack>
-                <Box>
-                {this.state.answer === "correct" && <motion.div
-                    animate={{
-                        scale: [1, 2, 2, 1, 1],
-                        rotate: [0, 20, 0, -20, 0],
-                    }}
-                    transition={{ ease: "linear", duration: 1.5, repeat: Infinity }}
-                    style={{position: "fixed", bottom: "150px"}}
-                >
-                    <Typography variant="h3" component="div"  sx={{
-                        display: 'flex',
-                        justifyContent: 'space-evenly',
-                        color: "green",
-                        }}>
-                        Correct!
-                  </Typography>
-                </motion.div>}
-                {this.state.answer === "incorrect" && <motion.div
-                    animate={{
-                        scale: [1, 2, 2, 1, 1],
-                        rotate: [0, 20, 0, -20, 0],
-                    }}
-                    transition={{ ease: "linear", duration: 2.5, repeat: Infinity }}
-                    style={{position: "fixed", bottom: "150px"}}
-                >
-                    <Typography variant="h3" component="div"  sx={{
-                        display: 'flex',
-                        justifyContent: 'space-evenly',
-                        color: "red"
-                        }}>
-                        Incorrect :(
-                  </Typography>
-                </motion.div>}
+                <Box sx={{
+                    display: 'flex',
+                    justifyContent: 'space-evenly',
+                    alignItems: 'center',
+                }}>
+                    {this.state.answer === "correct" && <motion.div
+                        animate={{
+                            scale: [1, 2, 2, 1, 1],
+                            rotate: [0, 20, 0, -20, 0],
+                        }}
+                        transition={{ ease: "linear", duration: 1.5, repeat: Infinity }}
+                        style={{position: "fixed", bottom: "150px"}}
+                    >
+                        <Typography variant="h3" component="div"  sx={{
+                            display: 'flex',
+                            justifyContent: 'space-evenly',
+                            color: "green",
+                            }}>
+                            Correct!
+                    </Typography>
+                    </motion.div>}
+                    {this.state.answer === "incorrect" && <motion.div
+                        animate={{
+                            scale: [1, 2, 2, 1, 1],
+                            rotate: [0, 20, 0, -20, 0],
+                        }}
+                        transition={{ ease: "linear", duration: 2.5, repeat: Infinity }}
+                        style={{position: "fixed", bottom: "150px"}}
+                    >
+                        <Typography variant="h3" component="div"  sx={{
+                            display: 'flex',
+                            justifyContent: 'space-evenly',
+                            color: "red"
+                            }}>
+                            Incorrect :(
+                    </Typography>
+                    </motion.div>}
                 </Box>
             </Box>
         </div>
