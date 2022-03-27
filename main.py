@@ -72,7 +72,7 @@ def get_answer_by_id():
                 for x in b["votes"]:
                     if x["id"] == lid and x["vote"] == "yea":
                         return jsonify("Yea")
-                    elif x["id"] == lid and x["vote"] == "nay"::
+                    elif x["id"] == lid and x["vote"] == "nay":
                         return jsonify("Nay")
     return jsonify("error")
 
