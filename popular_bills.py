@@ -11,21 +11,6 @@ rows = soup.find_all('tr')
 
 links = []
 
-# congress number, senate/house, bill number
-def get_summary(congress, sorhstring, number):
-    url = "https://www.congress.gov/bill/"+str(congress)+"th-congress/"+sorhstring+"-bill/"+str(number)
-    req = requests.get(url)
-    open('cache/' + url, 'w+').write(req.text)
-    sums = BeautifulSoup(req.text, 'lxml')
-    summ = sums.find("div", {"id": "bill-summary"})
-    text = sums.select("div#bill-summary p")
-    result = ""
-    for i, x in enumerate(text):
-        result += str(x.get_text())
-        if i != len(text)-1:
-            result += '\n'
-    return result
-
 def url_to_bill_directory(url):
     number = url.split('/')[-1]
     try:
@@ -73,7 +58,7 @@ for id in popular_ids:
         while id[i] not in '0123456789':
             i += 1
         number = int(id[i:])
-        j['bill_summary'] = get_summary(117, sorh, number)
+        j['bill_summary'] = get_summary(j['bill']['congress'], sorh, number)
         all_votes = []
         for nay in j['votes']['Nay']:
             nay['vote'] = 'nay'
