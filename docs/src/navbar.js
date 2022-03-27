@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import HomeIcon from '@mui/icons-material/Home';
 import logo from './minilogo.png';
+import { useEffect, useState } from 'react';
 import wordmark from './wordmark.png'
 import './navbar.css';
 import {useNavigate} from "react-router-dom";
@@ -14,6 +15,12 @@ import  { login } from './deso';
 
 function Navbar() {
     const history = useNavigate();
+    const [identity, setIdentity] = useState(undefined)
+    let desoComponent = <Button sx={{color: 'white'}} onClick={() => login().then(setIdentity)}>Login with Deso</Button>
+    console.log(identity)
+    if (identity) {
+        desoComponent = <div>{identity}</div>
+    }
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" sx={{ backgroundColor: "#27d9d9" }}>
@@ -31,8 +38,7 @@ function Navbar() {
                     <Box sx={{ flexGrow: 1 }}>
                         <img src={wordmark} className="wordmark" alt="Conguess" />
                     </Box>
-                    {/* <img src={logo} className="mini-logo" alt="logo" /> */}
-                    <Button sx={{color: 'white'}} onClick={login}>Login with Deso</Button>
+                    {desoComponent}
                 </Toolbar>
             </AppBar>
         </Box>
