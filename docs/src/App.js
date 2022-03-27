@@ -28,6 +28,17 @@ function App() {
                 renderInput={(params) => <TextField {...params} label="State" />}
             />
         </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-evenly',
+            textAlign: 'center',
+            paddingTop: 5,
+            }}
+        > 
+        <div class="box1">House of Representatives</div>
+        <div class="box2">Senate</div>
+        </Box>
   </Box>
   );
 }

@@ -1,3 +1,21 @@
 .large-logo {
     width: 30%;;
 }
+
+.box1 {
+  float: left;
+  width: 200px;
+  margin-left: 10px;
+  margin-top: 10px;
+  padding: 5px;
+  border: 2px solid #d9d910;
+}
+
+.box2 {
+  float: left;
+  width: 200px;
+  margin-left: 10px;
+  margin-top: 10px;
+  padding: 5px;
+  border: 2px solid #27d9d9;
+}
