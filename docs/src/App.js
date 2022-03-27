@@ -7,6 +7,7 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import { ListItemButton, ListItemText, Divider } from '@mui/material';
 import {NavLink, Link, useNavigate} from "react-router-dom";
+import { backendURL } from './backend';
 
 function App() {
     const history = useNavigate();
@@ -32,7 +33,7 @@ function App() {
                     options={states}
                     sx={{ width: 300 }}
                     renderInput={(params) => <TextField id="input" {...params} label="State" /> }
-                    onChange={(event, value) => window.fetch("http://127.0.0.1:8000/legislators?state="+abbr[states.indexOf(value)]).then(res => res.json()).then(data => setStatus(data))}
+                    onChange={(event, value) => window.fetch(backendURL + "/legislators?state="+abbr[states.indexOf(value)]).then(res => res.json()).then(data => setStatus(data))}
                     />
             </Box>
             <Box
