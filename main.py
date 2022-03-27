@@ -1,13 +1,13 @@
 import json
 import random
 import flask
-from flask import jsonify
+from flask import request, jsonify
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
 app = flask.Flask(__name__)
 
-@app.get("/bills")
+@app.route("/bills")
 def bills(legislator_id=None):
     with open('popular_bills.json') as f:
         results = json.load(f)
@@ -21,13 +21,13 @@ def bills(legislator_id=None):
                 del b['votes']
         return jsonify({"bills": results})
 
-@app.get("/legislators")
-def get_legislators(state: str):
+@app.route("/legislators")
+def get_legislators():
     legislators = []
     with open('popular_bills.json') as f:
         j = json.load(f)
         for x in j[0]["votes"]:
-            if x["state"] == state:
+            if x["state"] == request.args["state"]:
                 toadd = {}
                 toadd["id"] = x["id"]
                 toadd["name"] = x["display_name"]
@@ -35,14 +35,22 @@ def get_legislators(state: str):
                 legislators.append(toadd)
     return jsonify(legislators)
 
-@app.get("/get-bill")
-async def get_bill_by_id(lid):
+@app.route("/legislator")
+def get_legislator():
+    with open('popular_bills.json') as f:
+        j = json.load(f)
+        for x in j[0]["votes"]:
+            if x["id"] == request.args["lid"]:
+                return x["display_name"]
+
+@app.route("/get-bill")
+def get_bill_by_id():
     bills = []
     with open('popular_bills.json') as f:
         j = json.load(f)
         for b in j:
             for x in b["votes"]:
-                if x["id"] == lid:
+                if x["id"] == request.args["lid"]:
                     bills.append(b["bill"])
                     bills[-1]["title"] = b["subject"]
                     bills[-1]["summary"] = b["bill_summary"]
@@ -51,17 +59,21 @@ async def get_bill_by_id(lid):
     toreturn = random.sample(bills, 10)
     return jsonify(toreturn)
 
-@app.get("/get-answer")
-async def get_answer_by_id(lid, congress: int, number: int, type):
+@app.route("/get-answer")
+def get_answer_by_id():
+    lid = request.args["lid"]
+    congress = int(request.args["congress"])
+    number = int(request.args["number"])
+    type = request.args["type"]
     with open('popular_bills.json') as f:
         j = json.load(f)
         for b in j:
             if b["bill"]["number"] == number and b["bill"]["congress"] == congress and b["bill"]["type"] == type:
                 for x in b["votes"]:
                     if x["id"] == lid and x["vote"] == "Yea":
-                        return "Yea"
+                        return jsonify("Yea")
                     else:
-                        return "Nay"
+                        return jsonify("Nay")
     return jsonify("error")
 
 @app.after_request
