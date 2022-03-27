@@ -9,27 +9,32 @@ import HomeIcon from '@mui/icons-material/Home';
 import logo from './minilogo.png';
 import wordmark from './wordmark.png'
 import './navbar.css';
+import {useNavigate} from "react-router-dom";
 
-export default function navbar() {
-  return (
-    <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" sx={{ backgroundColor: "#27d9d9" }}>
-            <Toolbar>
-                <IconButton
-                    size="large"
-                    edge="start"
-                    color="inherit"
-                    aria-label="menu"
-                    sx={{ mr: 2 }}
-                >
-                    <HomeIcon />
-                </IconButton>
-                <Box sx={{ flexGrow: 1 }}>
-                    <img src={wordmark} className="wordmark" alt="Conguess" />
-                </Box>
-                <img src={logo} className="mini-logo" alt="logo" />
-            </Toolbar>
-        </AppBar>
-    </Box>
-  );
+function Navbar() {
+    const history = useNavigate();
+    return (
+        <Box sx={{ flexGrow: 1 }}>
+            <AppBar position="static" sx={{ backgroundColor: "#27d9d9" }}>
+                <Toolbar>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{ mr: 2 }}
+                        onClick={() => history('/')}
+                    >
+                        <HomeIcon />
+                    </IconButton>
+                    <Box sx={{ flexGrow: 1 }}>
+                        <img src={wordmark} className="wordmark" alt="Conguess" />
+                    </Box>
+                    <img src={logo} className="mini-logo" alt="logo" />
+                </Toolbar>
+            </AppBar>
+        </Box>
+    );
 }
+
+export default Navbar
