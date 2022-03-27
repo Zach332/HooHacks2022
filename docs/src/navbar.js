@@ -10,6 +10,7 @@ import logo from './minilogo.png';
 import wordmark from './wordmark.png'
 import './navbar.css';
 import {useNavigate} from "react-router-dom";
+import  { login } from './deso';
 
 function Navbar() {
     const history = useNavigate();
@@ -30,7 +31,8 @@ function Navbar() {
                     <Box sx={{ flexGrow: 1 }}>
                         <img src={wordmark} className="wordmark" alt="Conguess" />
                     </Box>
-                    <img src={logo} className="mini-logo" alt="logo" />
+                    {/* <img src={logo} className="mini-logo" alt="logo" /> */}
+                    <Button sx={{color: 'white'}} onClick={login}>Login with Deso</Button>
                 </Toolbar>
             </AppBar>
         </Box>

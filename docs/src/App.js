@@ -9,6 +9,9 @@ import { ListItemButton, ListItemText, Divider } from '@mui/material';
 import {NavLink, Link, useNavigate} from "react-router-dom";
 import { backendURL } from './backend';
 
+import Deso from 'deso-protocol'
+const deso = new Deso()
+
 function App() {
     const history = useNavigate();
     const [status, setStatus] = useState([]);
