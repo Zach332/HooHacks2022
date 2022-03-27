@@ -11,21 +11,6 @@ rows = soup.find_all('tr')
 
 links = []
 
-# congress number, senate/house, bill number
-def get_summary(congress, sorhstring, number):
-    url = "https://www.congress.gov/bill/"+str(congress)+"th-congress/"+sorhstring+"-bill/"+str(number)
-    req = requests.get(url)
-    open('cache/' + url, 'w+').write(req.text)
-    sums = BeautifulSoup(req.text, 'lxml')
-    summ = sums.find("div", {"id": "bill-summary"})
-    text = sums.select("div#bill-summary p")
-    result = ""
-    for i, x in enumerate(text):
-        result += str(x.get_text())
-        if i != len(text)-1:
-            result += '\n'
-    return result
-
 def url_to_bill_directory(url):
     number = url.split('/')[-1]
     try:
