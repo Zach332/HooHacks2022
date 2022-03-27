@@ -9,7 +9,7 @@ import App from './App';
 ReactDOM.render(
     <HashRouter>
         <Routes>
-            <Route path="/" element={<App />} />
+            <Route path="/" element={<QuizPage />} />
             <Route path="quiz" element={<QuizPage />} />
             <Route path="finish" element={<FinishPage />} />
         </Routes>

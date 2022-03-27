@@ -41,7 +41,6 @@ const states = [
     "Colorado",
     "Connecticut",
     "Delaware",
-    "District Of Columbia",
     "Florida",
     "Georgia",
     "Hawaii",

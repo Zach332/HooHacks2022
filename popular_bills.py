@@ -73,7 +73,7 @@ for id in popular_ids:
         while id[i] not in '0123456789':
             i += 1
         number = int(id[i:])
-        j['bill_summary'] = get_summary(117, sorh, number)
+        j['bill_summary'] = get_summary(j['bill']['congress'], sorh, number)
         all_votes = []
         for nay in j['votes']['Nay']:
             nay['vote'] = 'nay'
