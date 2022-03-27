@@ -1,5 +1,7 @@
 import json
 from fastapi import FastAPI
+import random
+from summary import get_summary
 
 app = FastAPI()
 
@@ -43,6 +45,7 @@ async def get_bill_by_id(lid):
             for x in b["votes"]["Yea"]:
                 if x["id"] == lid:
                     bills.append(b["bill"])
+                    bills[-1]["title"] = b["subject"]
                     c = True
                     break
             if c: continue
@@ -50,7 +53,10 @@ async def get_bill_by_id(lid):
                 if x["id"] == lid:
                     bills.append(b["bill"])
                     break
-    return str(bills)
+    for b in bills:
+        b["summary"] = get_summary(b["congress"], "house" if b["type"] == "hr" else "senate", b["number"])
+    toreturn = random.sample(bills, 10)
+    return str(toreturn)
 
 @app.get("/get-answer")
 async def get_answer_by_id(lid, congress: int, number: int, type):
