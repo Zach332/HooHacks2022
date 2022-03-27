@@ -8,9 +8,11 @@ specifiers:
   '@testing-library/jest-dom': ^5.16.3
   '@testing-library/react': ^12.1.4
   '@testing-library/user-event': ^13.5.0
+  deso-protocol: ^0.1.3
   framer-motion: ^6.2.8
   gh-pages: ^3.2.3
   react: ^17.0.2
+  react-confetti: ^6.0.1
   react-dom: ^17.0.2
   react-router-dom: '6'
   react-scripts: 5.0.0
@@ -24,8 +26,10 @@ dependencies:
   '@testing-library/jest-dom': 5.16.3
   '@testing-library/react': 12.1.4_react-dom@17.0.2+react@17.0.2
   '@testing-library/user-event': 13.5.0
+  deso-protocol: 0.1.3
   framer-motion: 6.2.8_react-dom@17.0.2+react@17.0.2
   react: 17.0.2
+  react-confetti: 6.0.1_react@17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-router-dom: 6.2.2_react-dom@17.0.2+react@17.0.2
   react-scripts: 5.0.0_react@17.0.2
@@ -3200,6 +3204,14 @@ packages:
     engines: {node: '>=4'}
     dev: false
 
+  /axios/0.25.0:
+    resolution: {integrity: sha512-cD8FOb0tRH3uuEe6+evtAbgJtfxr7ly3fQjYcMcuPlgkwVS9xboaVIpcDV+cYQe+yGykgwZCs1pzjntcGa6l5g==}
+    dependencies:
+      follow-redirects: 1.14.9
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   /axobject-query/2.2.0:
     resolution: {integrity: sha512-Td525n+iPOOyUQIeBfcASuG6uJsDOITl7Mds5gFyerkWiX7qhUTdYUBlSgNMyVqtSJqwpt1kXGLdUt6SykLMRA==}
     dev: false
@@ -4206,6 +4218,19 @@ packages:
   /depd/1.1.2:
     resolution: {integrity: sha1-m81S4UwJd2PnSbJ0xDRu0uVgtak=}
     engines: {node: '>= 0.6'}
+    dev: false
+
+  /deso-protocol-types/0.1.0:
+    resolution: {integrity: sha512-hvIQa5VwlkSYIKezl5xam5j5VMuxpLj5Dw3acbiZ045DnkiEWDmfuLKXlLX0bwLIbSdTh4xA7Cv9Eeiewc5B2Q==}
+    dev: false
+
+  /deso-protocol/0.1.3:
+    resolution: {integrity: sha512-+H5cLbZ3xz3IfuG1cX0LctCeOo2NCaLZxlrTrORjBTD5J7UqMUgAxyS9DAV8qEDe8eGXxaynaIWhNxZlgDTSlQ==}
+    dependencies:
+      axios: 0.25.0
+      deso-protocol-types: 0.1.0
+    transitivePeerDependencies:
+      - debug
     dev: false
 
   /destroy/1.0.4:
@@ -8158,6 +8183,16 @@ packages:
       whatwg-fetch: 3.6.2
     dev: false
 
+  /react-confetti/6.0.1_react@17.0.2:
+    resolution: {integrity: sha512-ZpOTBrqSNhWE4rRXCZ6E6U+wGd7iYHF5MGrqwikoiBpgBq9Akdu0DcLW+FdFnLjyZYC+VfAiV2KeFgYRMyMrkA==}
+    engines: {node: '>=10.18'}
+    peerDependencies:
+      react: ^16.3.0 || ^17.0.1
+    dependencies:
+      react: 17.0.2
+      tween-functions: 1.2.0
+    dev: false
+
   /react-dev-utils/12.0.0_eslint@8.12.0+webpack@5.70.0:
     resolution: {integrity: sha512-xBQkitdxozPxt1YZ9O1097EJiVpwHr9FoAuEVURCKV0Av8NBERovJauzP7bo1ThvuhZ4shsQ1AJiu4vQpoT1AQ==}
     engines: {node: '>=14'}
@@ -9375,6 +9410,10 @@ packages:
       typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
     dependencies:
       tslib: 1.14.1
+    dev: false
+
+  /tween-functions/1.2.0:
+    resolution: {integrity: sha1-GuOlDnxguz3vd06scHrLynO7w/8=}
     dev: false
 
   /type-check/0.3.2:

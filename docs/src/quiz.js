@@ -9,7 +9,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { motion } from 'framer-motion';
 import { Navigate } from 'react-router-dom';
 import { backendURL } from './backend';
-import './State.js'
+import './State.js';
 
 export class QuizPage extends React.Component {
 

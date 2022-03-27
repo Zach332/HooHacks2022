@@ -70,9 +70,9 @@ def get_answer_by_id():
         for b in j:
             if b["bill"]["number"] == number and b["bill"]["congress"] == congress and b["bill"]["type"] == type:
                 for x in b["votes"]:
-                    if x["id"] == lid and x["vote"] == "Yea":
+                    if x["id"] == lid and x["vote"] == "yea":
                         return jsonify("Yea")
-                    else:
+                    elif x["id"] == lid and x["vote"] == "nay"::
                         return jsonify("Nay")
     return jsonify("error")
 
