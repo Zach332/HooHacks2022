@@ -15,7 +15,7 @@ export class SummaryPage extends React.Component {
     render() {
         return <div>
             <NavBar />
-            <h1 style={{textAlign: "center", paddingTop: 5, textDecoration: "strong"}}>You scored {global.correct}/10</h1> 
+            <h1 style={{textAlign: "center", paddingTop: 5, textDecoration: "bold"}}>You scored {global.correct}/10</h1> 
         </div>
     }
 }
