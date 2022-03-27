@@ -8,6 +8,7 @@ app = FastAPI()
 
 origins = [
     "http://localhost:3000",
+    "http://localhost:8443"
 ]
 
 app.add_middleware(
@@ -69,8 +70,8 @@ async def get_answer_by_id(lid, congress: int, number: int, type):
         for b in j:
             if b["bill"]["number"] == number and b["bill"]["congress"] == congress and b["bill"]["type"] == type:
                 for x in b["votes"]:
-                    if x["id"] == lid and x["vote"] == "Yea":
+                    if x["id"] == lid and x["vote"] == "yea":
                         return "Yea"
-                    else:
+                    elif x["id"] == lid and x["vote"] == "nay":
                         return "Nay"
     return "error"

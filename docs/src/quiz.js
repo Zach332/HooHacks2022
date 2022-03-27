@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { motion } from 'framer-motion';
 
 export class QuizPage extends React.Component {
     constructor(props) {
@@ -17,8 +18,11 @@ export class QuizPage extends React.Component {
             bills: [],
             index: -1,
             bill: {
-                title: 'Loading title...',
-                summary: 'Loading summary...'
+                subject: 'Loading title...',
+                bill_summary: 'Loading summary...',
+                congress: 0,
+                number: 0,
+                type: ""
             },
             qtype: 0
         }
@@ -85,6 +89,42 @@ export class QuizPage extends React.Component {
                     }}>
                         Yea
                 </Typography>
+                {this.state.answer === "correct" && <motion.div
+                    animate={{
+                        scale: [1, 2, 2, 1, 1],
+                        rotate: [0, 20, 0, -20, 0],
+                    }}
+                    transition={{ ease: "linear", duration: 1.5, repeat: Infinity }}
+                    style={{position: "fixed"}}
+                >
+                    <Typography variant="h3" component="div"  sx={{
+                        mb: 10,
+                        display: 'flex',
+                        justifyContent: 'space-evenly',
+                        color: "green",
+                        x: "110%"
+                        }}>
+                        Correct!
+                  </Typography>
+                </motion.div>}
+                {this.state.answer === "incorrect" && <motion.div
+                    animate={{
+                        scale: [1, 2, 2, 1, 1],
+                        rotate: [0, 20, 0, -20, 0],
+                    }}
+                    transition={{ ease: "linear", duration: 2.5, repeat: Infinity }}
+                    style={{position: "fixed"}}
+                >
+                    <Typography variant="h3" component="div"  sx={{
+                        mb: 10,
+                        display: 'flex',
+                        justifyContent: 'space-evenly',
+                        color: "red",
+                        x: "110%"
+                        }}>
+                        Incorrect :(
+                  </Typography>
+                </motion.div>}
             </Box>
         </div>
     }
@@ -110,14 +150,29 @@ export class QuizPage extends React.Component {
     }
 
     respond(answer) {
-        const index = this.state.index + 1
-        if (index >= this.state.bills.length) {
-            console.log('All done')
-            return
-        }
-        this.setState({
-            index: index,
-            bill: this.state.bills[index]
-        })
+        console.log(this.state.bill)
+        fetch(`http://localhost:8000/get-answer?lid=${this.state.legislator.id}&congress=${this.state.bill.bill.congress}&number=${this.state.bill.bill.number}&type=${this.state.bill.bill.type}`)
+            .then(res => res.json())
+            .then(json => {
+                console.log(json)
+                console.log(this.state.legislator.id)
+                if ((answer === "yea" && json === "Yea") || (answer === "nay" && json === "Nay")) {
+                    this.setState({answer: "correct"})
+                } else {
+                    this.setState({answer: "incorrect"})
+                }
+            })
+        setTimeout(() => {
+            this.setState({answer: ""});
+            const index = this.state.index + 1
+            if (index >= this.state.bills.length) {
+                console.log('All done')
+                return
+            }
+            this.setState({
+                index: index,
+                bill: this.state.bills[index]
+            })}, 
+        2000);
     }
 }
