@@ -11,7 +11,7 @@ ReactDOM.render(
         <Routes>
             <Route path="/" element={<App />} />
             <Route path="quiz" element={<QuizPage />} />
-            <Route path="finish" element={<FinishPage />} />
+            <Route path="summary" element={<SummaryPage />} />
         </Routes>
     </HashRouter>,
   document.getElementById('root')
