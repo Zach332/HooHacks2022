@@ -43,7 +43,14 @@ export class QuizPage extends React.Component {
               }}>
                 {this.state.legislator.name}
             </Typography>
-            <div>{this.state.bill.subject}</div>
+            <Typography variant="h4" component="div"  sx={{
+              m: 3,
+              display: 'flex',
+              justifyContent: 'space-evenly',
+              color: "#27d9d9"
+              }}>
+                {this.state.bill.subject}
+            </Typography>
             <div>{this.state.bill.bill_summary}</div>
             <Typography variant="h4" component="div"  sx={{
               m: 3,
@@ -60,7 +67,7 @@ export class QuizPage extends React.Component {
                 height: '500px'
                 }}
             >
-                <Typography variant="h1" component="div"  sx={{
+                <Typography variant="h1" component="div" onClick={_ => this.respond('nay')} sx={{
                     }}>
                         Nay
                 </Typography>
@@ -68,13 +75,11 @@ export class QuizPage extends React.Component {
                 <ArrowBackIosIcon sx={{mr: 5}}/>
                 <ArrowForwardIosIcon />
                 </Divider>
-                <Typography variant="h1" component="div"  sx={{
+                <Typography variant="h1" component="div" onClick={_ => this.respond('yea')} sx={{
                     }}>
                         Yea
                 </Typography>
             </Box>
-            <button onClick={_ => this.respond('yea')}>Yea</button>
-            <button onClick={_ => this.respond('nay')}>Nay</button>
         </div>
     }
 
