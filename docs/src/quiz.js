@@ -6,8 +6,10 @@ import Divider from '@mui/material/Divider';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { motion } from 'framer-motion';
+import { Navigate } from 'react-router-dom';
 
 export class QuizPage extends React.Component {
+
     constructor(props) {
         super(props)
         this.state = {
@@ -42,6 +44,7 @@ export class QuizPage extends React.Component {
 
     render() {
         return <div>
+            {this.state.redirect && <Navigate to="/summary" />}
             <NavBar />
             <Typography variant="h3" component="div"  sx={{
               m: 4,
@@ -167,9 +170,7 @@ export class QuizPage extends React.Component {
                 const index = this.state.index + 1
                 if (index >= this.state.bills.length) {
                     console.log('All done')
-                    const history = useNavigate()
-                    history('/summary')
-                    return
+                    this.setState({redirect: true})
                 }
                 this.setState({
                     index: index,
