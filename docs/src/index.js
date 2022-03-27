@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { HashRouter, Routes, Route } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
+import { QuizPage } from './quiz';
+import { FinishPage } from './finish';
+import App from './App';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <HashRouter>
+        <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="quiz" element={<QuizPage />} />
+            <Route path="finish" element={<FinishPage />} />
+        </Routes>
+    </HashRouter>,
   document.getElementById('root')
 );
 
