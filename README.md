@@ -1,3 +1,7 @@
+# Conguess
+
+Play now at [zach332.github.io/HooHacks2022](https://zach332.github.io/HooHacks2022/)!
+
 ## Inspiration
 We all know public understanding of government activities is fundamental to democracy. But it's easy to feel disconnected from the day-to-day debates and decisions on Capitol Hill. Conguess aims to provide a fun and interactive way to learn about what your representatives are doing and understand how their values align with yours.
 
