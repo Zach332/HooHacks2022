@@ -9,6 +9,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { motion } from 'framer-motion';
 import { Navigate } from 'react-router-dom';
 import { backendURL } from './backend';
+import './State.js'
 
 export class QuizPage extends React.Component {
 
@@ -30,7 +31,8 @@ export class QuizPage extends React.Component {
             },
             qtype: 0,
             answer: "",
-            response: ""
+            response: "",
+            correct: 0
         }
         this.onKeyPress = this.onKeyPress.bind(this);
         window.fetch(backendURL + "/legislator?lid="+window.location.hash.split("?")[1]).then(res => res.text()).then(data => {this.state.legislator.name = data;})
@@ -175,6 +177,7 @@ export class QuizPage extends React.Component {
                     console.log(this.state.legislator.id)
                     if ((answer === "yea" && json === "Yea") || (answer === "nay" && json === "Nay")) {
                         this.setState({answer: "correct"})
+                        this.setState({correct: this.state.correct + 1})
                     } else {
                         this.setState({answer: "incorrect"})
                     }
@@ -182,8 +185,9 @@ export class QuizPage extends React.Component {
             setTimeout(() => {
                 this.setState({answer: "", response: ""});
                 const index = this.state.index + 1
-                if (index >= this.state.bills.length) {
+                if (index >= this.state.bills.length - 1) {
                     console.log('All done')
+                    global.correct = this.state.correct;
                     this.setState({redirect: true})
                 }
                 this.setState({

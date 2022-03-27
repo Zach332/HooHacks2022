@@ -1,0 +1,1 @@
+global.correct = 0;
