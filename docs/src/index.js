@@ -1,20 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import { HashRouter, Routes, Route } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
-import { LandingPage } from './landing';
 import { QuizPage } from './quiz';
 import { FinishPage } from './finish';
+import App from './App';
 
 ReactDOM.render(
-  <HashRouter>
-    <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="quiz" element={<QuizPage />} />
-      <Route path="finish" element={<FinishPage />} />
-    </Routes>
-</HashRouter>,
+    <HashRouter>
+        <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="quiz" element={<QuizPage />} />
+            <Route path="finish" element={<FinishPage />} />
+        </Routes>
+    </HashRouter>,
   document.getElementById('root')
 );
 

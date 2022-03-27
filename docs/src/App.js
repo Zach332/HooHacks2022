@@ -1,20 +1,19 @@
 import Box from '@mui/material/Box';
-import logo from './logo.svg';
+import logo from './logo512.png';
+import './App.css';
 
 function App() {
   return (
-    <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-evenly',
-          p: 1,
-          m: 1,
-          bgcolor: 'background.paper',
-          borderRadius: 1,
-        }}
-      >
-
-      </Box>
+    <Box>
+        <Box
+            sx={{
+            display: 'flex',
+            justifyContent: 'space-evenly',
+            }}
+        >
+            <img src={logo} className="large-logo" alt="logo" />
+        </Box>
+  </Box>
   );
 }
 
