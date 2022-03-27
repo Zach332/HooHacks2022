@@ -24,13 +24,14 @@ export class QuizPage extends React.Component {
                 number: 0,
                 type: ""
             },
-            qtype: 0
+            qtype: 0,
+            answer: ""
         }
         this.onKeyPress = this.onKeyPress.bind(this);
         window.fetch("http://127.0.0.1:8000/legislator?lid="+window.location.hash.split("?")[1]).then(res => res.text()).then(data => {this.state.legislator.name = data.slice(1, -1);})
     }
 
-    onKeyPress(event){
+    onKeyPress(event) {
         if(event.keyCode === 39) {
             this.respond('yea')
         } else if (event.keyCode === 37) {
@@ -151,29 +152,30 @@ export class QuizPage extends React.Component {
     }
 
     respond(answer) {
-        console.log(this.state.bill)
-        fetch(`http://localhost:8000/get-answer?lid=${this.state.legislator.id}&congress=${this.state.bill.bill.congress}&number=${this.state.bill.bill.number}&type=${this.state.bill.bill.type}`)
-            .then(res => res.json())
-            .then(json => {
-                console.log(json)
-                console.log(this.state.legislator.id)
-                if ((answer === "yea" && json === "Yea") || (answer === "nay" && json === "Nay")) {
-                    this.setState({answer: "correct"})
-                } else {
-                    this.setState({answer: "incorrect"})
+        if(this.state.answer === "") {
+            fetch(`http://localhost:8000/get-answer?lid=${this.state.legislator.id}&congress=${this.state.bill.bill.congress}&number=${this.state.bill.bill.number}&type=${this.state.bill.bill.type}`)
+                .then(res => res.json())
+                .then(json => {
+                    console.log(json)
+                    console.log(this.state.legislator.id)
+                    if ((answer === "yea" && json === "Yea") || (answer === "nay" && json === "Nay")) {
+                        this.setState({answer: "correct"})
+                    } else {
+                        this.setState({answer: "incorrect"})
+                    }
+                })
+            setTimeout(() => {
+                this.setState({answer: ""});
+                const index = this.state.index + 1
+                if (index >= this.state.bills.length) {
+                    console.log('All done')
+                    return
                 }
-            })
-        setTimeout(() => {
-            this.setState({answer: ""});
-            const index = this.state.index + 1
-            if (index >= this.state.bills.length) {
-                console.log('All done')
-                return
-            }
-            this.setState({
-                index: index,
-                bill: this.state.bills[index]
-            })}, 
-        2000);
+                this.setState({
+                    index: index,
+                    bill: this.state.bills[index]
+                })}, 
+            2000);
+        }
     }
 }
