@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from './navbar';
 import './State.js'
 import Confetti from 'react-confetti'
+import { Typography } from '@mui/material';
 
 export class SummaryPage extends React.Component {
     constructor(props) {
@@ -12,7 +13,7 @@ export class SummaryPage extends React.Component {
         return <div>
             <NavBar />
             <Confetti />
-            <h1 style={{textAlign: "center", paddingTop: 5, textDecoration: "bold"}}>You scored {global.correct}/10</h1> 
+            <Typography variant = "h1" style={{textAlign: "center", paddingTop: 200, textDecoration: "bold"}}>You scored {global.correct}/10</Typography> 
         </div>
     }
 }
