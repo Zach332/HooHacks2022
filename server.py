@@ -45,7 +45,15 @@ async def get_legislators(state: str):
                 toadd["name"] = x["display_name"]
                 toadd["party"] = x["party"]
                 legislators.append(toadd)
-    return str(legislators)
+    return legislators
+
+@app.get("/legislator")
+async def get_legislators(lid: str):
+    with open('popular_bills.json') as f:
+        j = json.load(f)
+        for x in j[0]["votes"]:
+            if x["id"] == lid:
+                return x["display_name"]
 
 @app.get("/get-bill")
 async def get_bill_by_id(lid):
