@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { HashRouter, Routes, Route } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 import { QuizPage } from './quiz';
-import { FinishPage } from './finish';
+import { SummaryPage } from './summary';
 import App from './App';
 
 ReactDOM.render(

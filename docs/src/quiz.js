@@ -165,6 +165,8 @@ export class QuizPage extends React.Component {
                 const index = this.state.index + 1
                 if (index >= this.state.bills.length) {
                     console.log('All done')
+                    const history = useNavigate()
+                    history('/summary')
                     return
                 }
                 this.setState({

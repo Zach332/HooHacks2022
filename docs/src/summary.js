@@ -114,7 +114,7 @@ export class SummaryPage extends React.Component {
         const index = this.state.index + 1
         if (index >= this.state.bills.length) {
             console.log('All done')
-            return
+                        return
         }
         this.setState({
             index: index,
