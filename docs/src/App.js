@@ -2,9 +2,14 @@ import Box from '@mui/material/Box';
 import logo from './logo512.png';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import List from '@mui/material/List'
 import './App.css';
-
+import { useEffect, useState } from 'react';
+import { ListItemButton, ListItemText, Divider } from '@mui/material';
+// window.fetch("http://127.0.0.1:8000/legislators?state="+event.target.value).then(res => res.json()).then(data => setStatus(data))
 function App() {
+
+    const [status, setStatus] = useState([]);
   return (
     <Box>
         <Box
@@ -25,8 +30,9 @@ function App() {
                 disablePortal
                 options={states}
                 sx={{ width: 300 }}
-                renderInput={(params) => <TextField {...params} label="State" />}
-            />
+                renderInput={(params) => <TextField id="input" {...params} label="State" /> }
+                onChange={(event, value) => window.fetch("http://127.0.0.1:8000/legislators?state="+abbr[states.indexOf(value)]).then(res => res.json()).then(data => setStatus(data))}
+                 />
         </Box>
         <Box
           sx={{
@@ -36,12 +42,66 @@ function App() {
             paddingTop: 5,
             }}
         > 
-        <div class="box1">House of Representatives</div>
+        <Box sx={{ bgcolor: '#d9d910', padding: 3}}><ListItemText>House of Representatives</ListItemText><Divider color="black" /><List>{status.map(x => <ListItemButton><ListItemText>{x.name}, {(x.party == "R")?("Republican"):("Democrat")}</ListItemText></ListItemButton>)}</List></Box>
         {/* <div class="box2">Senate</div> */}
+        
         </Box>
   </Box>
   );
 }
+
+const abbr = [
+    "AL",
+    "AK",
+    "AZ",
+    "AR",
+    "CA",
+    "CZ",
+    "CO",
+    "CT",
+    "DE",
+    "FL",
+    "GA",
+    "HI",
+    "ID",
+    "IL",
+    "IN",
+    "IA",
+    "KS",
+    "KY",
+    "LA",
+    "ME",
+    "MD",
+    "MA",
+    "MI",
+    "MN",
+    "MS",
+    "MO",
+    "MT",
+    "NE",
+    "NV",
+    "NH",
+    "NJ",
+    "NM",
+    "NY",
+    "NC",
+    "ND",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VT",
+    "VA",
+    "WV",
+    "WI",
+    "WY"
+]
 
 const states = [
     "Alabama",
@@ -89,7 +149,6 @@ const states = [
     "Texas",
     "Utah",
     "Vermont",
-    "Virgin Islands",
     "Virginia",
     "Washington",
     "West Virginia",

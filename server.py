@@ -44,7 +44,7 @@ async def get_legislators(state: str):
                 toadd["name"] = x["display_name"]
                 toadd["party"] = x["party"]
                 legislators.append(toadd)
-    return str(legislators)
+    return legislators
 
 @app.get("/get-bill")
 async def get_bill_by_id(lid):
