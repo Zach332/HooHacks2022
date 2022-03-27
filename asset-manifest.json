@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/HooHacks2022/static/css/main.073c9b0a.css",
-    "main.js": "/HooHacks2022/static/js/main.507f029b.js",
+    "main.css": "/HooHacks2022/static/css/main.7fa4e98b.css",
+    "main.js": "/HooHacks2022/static/js/main.e2b9e2a5.js",
     "static/js/787.d37de791.chunk.js": "/HooHacks2022/static/js/787.d37de791.chunk.js",
-    "static/media/logo.svg": "/HooHacks2022/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "static/media/minilogo.png": "/HooHacks2022/static/media/minilogo.a730a68a11c7090b8f37.png",
+    "static/media/logo512.png": "/HooHacks2022/static/media/logo512.16cb859b7f72b066a3d7.png",
     "index.html": "/HooHacks2022/index.html",
-    "main.073c9b0a.css.map": "/HooHacks2022/static/css/main.073c9b0a.css.map",
-    "main.507f029b.js.map": "/HooHacks2022/static/js/main.507f029b.js.map",
+    "main.7fa4e98b.css.map": "/HooHacks2022/static/css/main.7fa4e98b.css.map",
+    "main.e2b9e2a5.js.map": "/HooHacks2022/static/js/main.e2b9e2a5.js.map",
     "787.d37de791.chunk.js.map": "/HooHacks2022/static/js/787.d37de791.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.507f029b.js"
+    "static/css/main.7fa4e98b.css",
+    "static/js/main.e2b9e2a5.js"
   ]
 }
