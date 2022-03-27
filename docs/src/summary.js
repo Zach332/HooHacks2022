@@ -6,7 +6,7 @@ import Divider from '@mui/material/Divider';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-export class QuizPage extends React.Component {
+export class SummaryPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
