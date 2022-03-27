@@ -88,7 +88,7 @@ export class QuizPage extends React.Component {
                 }}
             >
                 <div style={{flex: 1}} onClick={_ => this.respond('nay')} className='answerBox'>
-                    <Typography variant="h1" component="div" sx={{textAlign: 'center'}}>
+                    <Typography variant="h1" component="div" sx={{textAlign: 'center', color: this.state.response == 'nay' ? '#d9d910' : ''}}>
                             Nay
                     </Typography>
                 </div>
@@ -98,11 +98,14 @@ export class QuizPage extends React.Component {
                 </Divider>
                 <div style={{flex: 1}} onClick={_ => this.respond('yea')} className='answerBox'>
                     <Typography variant="h1" component="div" onClick={_ => this.respond('yea')} sx={{
-                        textAlign: 'center'
+                        textAlign: 'center',
+                        color: this.state.response == 'yea'? '#27d9d9' : ''
                         }}>
                             Yea
                     </Typography>
                 </div>
+                </Stack>
+                <Box>
                 {this.state.answer === "correct" && <motion.div
                     animate={{
                         scale: [1, 2, 2, 1, 1],
@@ -135,7 +138,7 @@ export class QuizPage extends React.Component {
                         Incorrect :(
                   </Typography>
                 </motion.div>}
-            </Stack>
+                </Box>
             </Box>
         </div>
     }
