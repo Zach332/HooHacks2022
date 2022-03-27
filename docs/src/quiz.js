@@ -51,7 +51,13 @@ export class QuizPage extends React.Component {
               }}>
                 {this.state.bill.subject}
             </Typography>
-            <div>{this.state.bill.bill_summary}</div>
+            <Typography component="div"  sx={{
+              m: 3,
+              display: 'flex',
+              justifyContent: 'space-evenly'
+              }}>
+                {this.state.bill.bill_summary}
+            </Typography>
             <Typography variant="h4" component="div"  sx={{
               m: 3,
               display: 'flex',
